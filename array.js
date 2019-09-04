@@ -1,65 +1,65 @@
 // //5. URLify a string
-// function URLify(arr){
-//   let splitString=arr.split(' ');
-//   let newString=splitString.join('%20');
-//   return newString;
-// }
-// console.log(URLify('tauhida parveen'));
-// console.log(URLify('www.thinkful.com /tauh ida parv een'));
+function URLify(arr){
+  let splitString=arr.split(' ');
+  let newString=splitString.join('%20');
+  return newString;
+}
+console.log(URLify('tauhida parveen'));
+console.log(URLify('www.thinkful.com /tauh ida parv een'));
 
-// //6.Filtering an array
-// function filter(arr){
-//   let result=[];
-//   for (let i = 0; i < arr.length; i++){
-//     if(arr[i]>=5){
-//       result.push(arr[i]);
-//     }
+//6.Filtering an array
+function filter(arr){
+  let result=[];
+  for (let i = 0; i < arr.length; i++){
+    if(arr[i]>=5){
+      result.push(arr[i]);
+    }
     
-//   }
-//   return result;
-// }
-// console.log(filter([6,7,2,4,8,5]));
+  }
+  return result;
+}
+console.log(filter([6,7,2,4,8,5]));
 
-// //7. Max sum in the array
+//7. Max sum in the array
 
-// function maxSum(arr){
-//   let max = 0;
-//   for (let i = 0; i <arr.length; i++){
-//     let testArr = arr.slice(i);
-//     let cur = 0;
-//     for (let j=0; j<testArr.length; j++){
-//       cur += testArr[j];
-//       if(cur >= max){
-//         max = cur;
-//       }
-//     }
-//   }
-//   return max;
-// }
-// console.log(maxSum([4, 6, -3, 5, -2, 1]));
+function maxSum(arr){
+  let max = 0;
+  for (let i = 0; i <arr.length; i++){
+    let testArr = arr.slice(i);
+    let cur = 0;
+    for (let j=0; j<testArr.length; j++){
+      cur += testArr[j];
+      if(cur >= max){
+        max = cur;
+      }
+    }
+  }
+  return max;
+}
+console.log(maxSum([4, 6, -3, 5, -2, 1]));
 
-// //8. Merge arrays
-// function merge(arr1,arr2){
-// //    let newArr1 = arr1.sort(function(a,b){return a-b});
-// //    let newArr2 = arr2.sort(function(a,b){return a-b});
-// //    return newArr = newArr1 + newArr2
-//   let newArr = arr1.concat(arr2);
-//   return  newArr.sort(function(a,b){return a-b;});
-// }
-// console.log(merge([1, 3, 6, 8, 11],[2, 3, 5, 8, 9, 10]));
+//8. Merge arrays
+function merge(arr1,arr2){
+//    let newArr1 = arr1.sort(function(a,b){return a-b});
+//    let newArr2 = arr2.sort(function(a,b){return a-b});
+//    return newArr = newArr1 + newArr2
+  let newArr = arr1.concat(arr2);
+  return  newArr.sort(function(a,b){return a-b;});
+}
+console.log(merge([1, 3, 6, 8, 11],[2, 3, 5, 8, 9, 10]));
 
-// //9. Remove characters
-// function remove(str,rm){
-//   var regex = new RegExp(`[${rm}]`,'gi');
+//9. Remove characters
+function remove(str,rm){
+  var regex = new RegExp(`[${rm}]`,'gi');
     
  
-//   return str.replace(regex,'');
+  return str.replace(regex,'');
 
-// }
-// console.log(remove('Battle of the Vowels: Hawaii vs. Grozny', 'aeiou'));
+}
+console.log(remove('Battle of the Vowels: Hawaii vs. Grozny', 'aeiou'));
 
 
-//10. Products
+10. Products
 
 function product(arr){
   let result = [];
@@ -105,7 +105,7 @@ console.log(search0([[1,0,1,1,0],
 //12. String rotation
 
 function rotation(str1, str2){
-    console.log(str2.indexOf(str1));
+   
    return (str2 + str2).indexOf(str1) != -1;
    
 }
