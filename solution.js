@@ -1,503 +1,240 @@
 /*
-1. Counting Sheep
-Write a recursive function that counts how many sheep jump over the fence. 
-Your program should take a number as input. That number should be the number of 
-sheep you have. 
-The function should display the number along with the message 
-"Another sheep jumps over the fence" until no more sheep are left.
-Input: 3
-Output:
-3: Another sheep jump over the fence
-2: Another sheep jump over the fence
-1: Another sheep jump over the fence
-All sheep jumped over the fence
+### 1. URLify a string
+A common mistake users make when they type in an URL is to put spaces between words or letters. One solution that developers can use to solve this problem is to replace any spaces with a '%20'. Write a method that takes in a string and replaces all its empty spaces with a '%20'. Your algorithm can only make 1 pass through the string.
+Examples of input and output for this problem can be 
+Input: tauhida parveen
+Output: tauhida%20parveen
+input: www.thinkful.com /tauh ida parv een
+output: www.thinkful.com%20/tauh%20ida%20parv%20een
 */
+function urlifyString(str){
+    let spaceCount = 0;
+    let index = 0;
+    let newString = '';
+    for(let i=0; i<str.length; i++){
+        if(str[i]===' '){
+            newString+='%20'
+ 
+        }else{
+            newString += str[i];
+        }
+        
+    }
+    return newString;
+}
 
 /*
- * @function countSheep
- * @desc     Recursive program that counts how many sheep jumps over the fence. 
- * @param    {num} num - the number sheep 
- * @returns  none
- * @display  displays how many sheep jumped over the fence
- */
-
-function countSheep(num){
-    //stopping condition of base case
-    if(num === 0){
-        console.log(`All sheep jumped over the fence`);
-    } 
-    //this is the recursive case
-    //this will be executed until it reaches base case
-    else{
-        console.log(`${num}: Another sheep jump over the fence`);
-        countSheep(num-1);
-    }
-}
-
-/*===========================================================================
-2. Write a function called `powerCalculator()` that takes two parameters, an integer as a base, and another integer as an exponent. The function returns the value of the base raised to the power of the exponent. Use only exponents greater than or equal to 0 (positive numbers)
-* `powerCalculatorRec(10,2)`  should return `100`
-* `powerCalculatorRec(10,-2)`  should return `exponent should be >= 0`
+### 2. Filtering an array
+Imagine you have an array of numbers. Write an algorithm to remove all numbers 
+less than five from the array. 
+Don't use array's built-in `.filter` method here; write the algorithm from scratch.
+Input: [10,4,5,8,2,9];
+Output: [10,5,8,9]
 */
-
-const powerCalculatorRec = function(base, exponent){
-    if(exponent < 0){
-        return 'exponent should be >= 0';
-    }
-    else {
-        //base case
-            if(exponent === 0){
-                return 1;
-            }
-            return base * powerCalculatorRec(base,--exponent); 
-        }
-}
-
-
-/*=================================================================================
-Exercise 3 - Reverse String
-Write a program that reverses a string. Take a string as input, 
-reverse the string, and return the new string.
-Input: 'tauhida'
-Output: adihuat
-*/
-
-function reverseString(str) {
-    if (str.length < 2) {
-        return str;
-    }
-    return reverseString(str.slice(1)) + str[0];
-}
-
-/*=================================================================================
-Exercise 4 - Triangular Number
-Calculates the nth triangular number.
-A triangular number counts the objects that can form an equilateral triangle. 
-The nth triangular number is the number of dots composing a triangle with n dots on a side, 
-and is equal to the sum of the n natural numbers from 1 to n. 
-This is the Triangular Number Sequence: 1, 3, 6, 10, 15, 21, 28, 36, 45
-                          *
-            *           *    *
-*     |   *   *  |   *    *    *  |
- 1st     2nd             3rd             nth?  
-1st trianular number = 1
-2nd = (1+2) = 3
-3rd = (1+2+3) = 6 
-5th = (1+2+3+4+5) = 15
-Input: 5
-Output: 15
-*/
-//Should always return n*(n+1)/2
-function triangle(n) {
-    if (n < 2) 
-        return n;
-    return n + triangle(n - 1);
-}
-
-/*=================================================================================
-Exercise 5 - String Splitter
-Split a string based upon a separator (similar to String.prototype.split).
-Input: '1/21/2018'
-Output: 1212018 OR ["1", "21", "2018"]
-*/
-function split(str, sep) {
-    var idx = str.indexOf(sep);
-    if (idx == -1) 
-        return [str];
-		//you don't have to return an array, you can return a string as an array of 
-		//character 
-		//return str;
-    return [str.slice(0, idx)].concat(split(str.slice(idx + sep.length), sep))
-    
-    //****** all these are valid syntax as well
-	//return (str.slice(0,idx) + (split(str.slice(idx + sep.length), sep)))
-	//return str.slice(0,idx).concat(split(str.slice(idx + sep.length), sep))
-}
-
-/*=================================================================================
-Exercise 6 - Factorial
-Write a recursive program that finds the factorial of a given number. 
-The factorial of a number can be found by multiplying that number by each number 
-between itself and one. The factorial of 5 is equal to 5 * 4 * 3 * 2 * 1 = 120
-Input: 5
-Output: 120
-*/
-function factorial(n) {  
-    // Base Case - when n is equal to 0, we stop the recursion
-    if (n === 0) {
-      return 1;
-    }
-    // This is our Recursive Case
-    // It will run for all other conditions except when n is equal to 0
-    return n * factorial(n - 1);
-  }
-  
-  /*=================================================================================
-  Exercise 7 - Fibonacci
-  
-  Write a recursive program that prints the fibonacci sequence of a given number. 
-  The fibonnaci sequence a series of numbers in which each number is the sum of the 
-  two preceding numbers. 
-  For example the 7th fibonacci number in a fibonaci sequence is  13. 
-  The sequence looks as follows: 1 1 2 3 5 8 13.
-  
-  Input: 7
-  Output: 13
-  */
-  function fibonacci(n) {
-    // Base case
-    if (n <= 0) {
-      return 0;
-    }
-    // Base case
-    if (n <= 2) {
-      return 1;
-    }	
-    // Recursive case
-    return fibonacci(n - 1) + fibonacci(n - 2);	
-  }
-
-/*/*=================================================================================
-8. Find a way out of the maze
-You have entered a Maze and need to find your way out of it. There are more than one possible exit from the Maze. Write a recursive function that will help you find a possible exit though the maze
-You can use the following as your maze.
-let maze = [
-    [' ', ' ', ' ', '*', ' ', ' ', ' '],
-    ['*', '*', ' ', '*', ' ', '*', ' '],
-    [' ', ' ', ' ', ' ', ' ', ' ', ' '],
-    [' ', '*', '*', '*', '*', '*', ' '],
-    [' ', ' ', ' ', ' ', ' ', ' ', 'e']
-];
-The Maze is represented as a NM matrix (in the above case, a 5X7 array). The starting point is the top left corner and the exit is indicated by e. For simplicity purpose, use the bottom right corner of the maze as the exit. You can't go outside the boundaries of the maze. The maze has passages that are blocked and you can't go through them. These blocked passages are indicated by ``. Passing through a blocked cell as well as passing though a cell that you have already passed before are forbidden.
-For the above maze, a possible exit can be RRDDLLDDRRRRRR
-*/
-
-const maze = function(labyrinth, position=0, row, col, direction='S',path){
-    if(col<0 || row < 0){
-        return;
-    }
-    if(col>=labyrinth[0].length || row>=labyrinth.length){
-        return;
-    }
-   
-    path[position] = direction;
-    position++;
-
-    if (labyrinth[row][col] === 'e'){
-        PrintPath(path, 1, position - 1);
-        return;
-    }
-    if (labyrinth[row][col] === ' ') {
-        // The current cell is free. Mark it as visited
-        labyrinth[row][col] = 's';
-        // Invoke recursion to explore all possible directions
-        maze(labyrinth,position,row, col - 1, 'L',path); // left
-        maze(labyrinth,position,row - 1, col, 'U',path); // up
-        maze(labyrinth,position,row, col + 1, 'R',path); // right
-        maze(labyrinth,position,row + 1, col, 'D',path); // down
-        // Mark back the current cell as free
-        //lab[row][col] = ' ';
-    }
-    // Remove the last direction from the path
-    position--;
-
-}
-const PrintPath = function (path, startPos, endPos){
-    console.log('Found path to the exit: ');
-    console.log(path);
-}
-
-
-
-
-/*/*=================================================================================
-9. Find ALL the ways out of the maze
-Use the above maze and modify your solution so it finds All the possible exits through the Maze. To find all possible exit through the maze, think about how many places you can move at each turn. Possibly up, down, left or right?
-Notice that this maze has 3 exits. Your recursive function should print all three of the paths with the proper directions. For example, given the maze above, the program should output the following:
-Path to the exit: RRDDLLDDRRRRRR
-Path to the exit: RRDDRRUURRDDDD
-Path to the exit: RRDDRRRRDD
-*/
-
-const mazeAll = function(labyrinth, position=0, row, col, direction='S',path){
-    if(col<0 || row < 0){
-        return;
-    }
-    if(col>=labyrinth[0].length || row>=labyrinth.length){
-        return;
-    }
-   
-    path[position] = direction;
-    position++;
-
-    if (labyrinth[row][col] === 'e'){
-        PrintPath(path, 1, position - 1);
-        return;
-    }
-    if (labyrinth[row][col] === ' ') {
-        // The current cell is free. Mark it as visited
-        labyrinth[row][col] = 's';
-        // Invoke recursion to explore all possible directions
-        mazeAll(labyrinth,position,row, col - 1, 'L',path); // left
-        mazeAll(labyrinth,position,row - 1, col, 'U',path); // up
-        mazeAll(labyrinth,position,row, col + 1, 'R',path); // right
-        mazeAll(labyrinth,position,row + 1, col, 'D',path); // down
-        // Mark back the current cell as free
-        labyrinth[row][col] = ' ';
-    }
-    // Remove the last direction from the path
-    position--;
-
-}
-
-/*=================================================================================
-Exercise 9 - Anagrams
-An anagram is any word or phrase that exactly reproduces the letters in another order. 
-Write a program that creates an anagram (listing all the rearrangements of a word) of a given word. 
-For example, if the user types east, the program should list all 24 permutations, including eats, etas, teas, 
-and non-words like tsae.
-Hint: For your algorithm, you might want to think about a prefix and use that to create the new words. 
-For example, given east, use e as a prefix and you would place e in front of all six permutations of ast 
-— ast, ats, sat, sta, tas, and tsa. This will give you the words east, eats, esat, esta, etas, and etsa. 
-Continue this way until you find all the anagrams for east. There should be 24 of them.
-Input: 
-Output: 
-*/
-
-function anagrams(prefix, str){
-    if(str.length <= 1){
-        console.log(`The anagram is ${prefix}${str}`);
-    } else {
-        for(let i=0; i<str.length; i++){
-            let currentLetter = str.substring(i, i+1); 
-            let previousLetters = str.substring(0,i);
-            let afterLetters = str.substring(i+1);
-            anagrams(prefix+currentLetter, previousLetters+afterLetters);
-        }
-    }
-}
-function printAnagram(word){
-    //console.log(`The word for which we will find an anagram is ${word}`);
-    anagrams(' ', word);
-
-}
-
-/*=================================================================================*/
-/*
-Exercise 11: Organization Chart
-Write a recursive function that prints the following organization chart. 
-Your output should be as shown below with proper indentation to show the hierarchy.
-let organization = {
-	"Zuckerberg": {		
-		"Schroepfer": {
-			"Bosworth": {
-				"Steve":{},
-				"Kyle":{},
-				"Andra":{}
-			},
-			"Zhao": {
-				"Richie":{},
-				"Sofia":{},
-				"Jen":{}
-			},
-			"Badros": {
-				"John":{},
-				"Mike":{},
-				"Pat":{}
-			},
-			"Parikh": {
-				"Zach":{},
-				"Ryan":{},
-				"Tes":{}
-			}
-		},
-		"Schrage": {
-			"VanDyck": {
-				"Sabrina":{},
-				"Michelle":{},
-				"Josh":{}
-			},
-			"Swain": {
-				"Blanch":{},
-				"Tom":{},
-				"Joe":{}
-			},
-			"Frankovsky": {
-				"Jasee":{},
-				"Brian":{},
-				"Margaret":{}
-			}
-		},
-		"Sandberg": {
-			"Goler": {
-				"Eddie":{},
-				"Julie":{},
-				"Annie":{}
-			},
-			"Hernandez": {
-				"Rowi":{},
-				"Inga":{},
-				"Morgan":{}
-			},
-			"Moissinac": {
-				"Amy":{},
-				"Chuck":{},
-				"Vinni":{}
-			},
-			"Kelley": {
-				"Eric":{},
-				"Ana":{},
-				"Wes":{}
-			}
-}}};
-*/
-function traverseA(data, depth = 0) {
-	let indent = " ".repeat(depth * 4);
-	Object.keys(data).forEach(key => {
-		console.log(indent + key);
-		traverseA(data[key], depth + 1)
-	});
-}
-//another version of the solution
-function traverseB(node, indent=0) {
-	for (var key in node) {
-		console.log(" ".repeat(indent), key);
-		traverseB(node[key], indent + 4);
+function remove_lt_5(arr) {
+	let ret = [];
+	for (var i = 0; i < arr.length; ++i) {
+		if (!(arr[i] < 5)) 
+			ret.push(arr[i]);
 	}
+	return ret;
 }
 
-//Write a recursive function that prints out the binary representation of a given number.
-// input: 5
-//output: 101
+/*
+### 3: Max sum in the array
+You are given an array containing positive and negative integers. 
+Write an algorithm which will find the largest sum in a continuous sequence.
+Input: [4,6,-3,5,-2,1]
+Output: 12
+*/
 
-function binaryRep(input){
-    if(input<=0){
-        return '';
-    } 
-    let binary = Math.floor(input%2);
-    return binaryRep(Math.floor(input/2)) + binary
+let maxSubarray = function(arr) {
+    let maxEndingHere = 0;
+    let maxSoFar = 0;
+    for (let i=0; i<arr.length; i++) {
+        let item = arr[i];
+        maxEndingHere = Math.max(0, maxEndingHere + item);
+        maxSoFar = Math.max(maxSoFar, maxEndingHere);
+        //console.log(item, maxEndingHere, maxSoFar);
+    }
+    return maxSoFar;
+};
+
+/*
+### 4. Merge Arrays
+Imagine you have two arrays which have already been sorted. 
+Write an algorithm to merge the two arrays into a single array, 
+which should also be sorted. 
+Input:[1, 3, 6, 8, 11] and [2, 3, 5, 8, 9, 10]
+Output:[1, 2, 3, 3, 5, 6, 8, 8, 9, 10, 11]
+*/
+function merge_arrays(arr1, arr2) {
+	let idx1 = 0, idx2 = 0;
+	let ret = [];
+	while (idx1 < arr1.length && idx2 < arr2.length) {
+		if (arr1[idx1] <= arr2[idx2])
+			ret.push(arr1[idx1++]);
+		else
+			ret.push(arr2[idx2++]);
+	}
+	// One array is now empty. Join the rest of the other array on.
+	if (idx2 < arr2.length) {
+		idx1 = idx2;
+		arr1 = arr2;
+	}
+	while (idx1 < arr1.length) 
+        ret.push(arr1[idx1++]);
+	return ret;
+}
+
+/*
+### 5: Remove Characters
+Write an algorithm that deletes given characters from a string. For example, given a 
+string of "Battle of the Vowels: Hawaii vs. Grozny" and characters to be removed are 
+"aeiou", the algorithm should transform the original string to "Bttl f th Vwls: Hw vs. Grzny". 
+ot use Javascript's filter, split, or join methods.
+Input:'Battle of the Vowels: Hawaii vs. Grozny', 'aeiou'
+Output: 'Bttl f th Vwls: Hw vs. Grzny'
+*/
+function removeChar(str1, str2){
+    let tempArr=[], newStr=[], newStrMod='';
+    let index =0, j=0;
+
+    for(let i=0; i<str2.length; i++){
+        index = (Math.abs(str2[i].charCodeAt() - 'a'.charCodeAt()));
+        if(!tempArr[index]){
+            tempArr[index]=1;
+        }       
+    }    
+    for(let i=0; i<str1.length;i++){
+        index = (Math.abs(str1[i].charCodeAt() - 'a'.charCodeAt()));
+        if(!tempArr[index]){
+            newStr[j++] = str1[i];
+        }
+    }
+    for(let i=0; i<newStr.length; i++){
+        newStrMod +=newStr[i];
+    }
+    return newStrMod;
+}
+
+/*
+### 6: Products
+Given an array of numbers, write an algorithm to find out the products of every number, 
+except the one at that index.
+Input:[1, 3, 9, 4]
+Output:[108, 36, 12, 27]
+*/
+function products(arr) {
+	let ret = [];
+	for (let idx1 = 0; idx1 < arr.length; ++idx1) {
+		let prod = 1;
+		for (let idx2 = 0; idx2 < arr.length; ++idx2) {
+			if (idx1 != idx2) {
+                prod *= arr[idx2];
+            }
+		}
+		ret.push(prod);
+	}
+	return ret;
+}
+
+/*
+### 7: 2D array
+Write an algorithm which searches through a 2D array, and whenever it finds a zero should 
+set the entire row and column to zero.
+Input:
+[[1,0,1,1,0],
+[0,1,1,1,0],
+[1,1,1,1,1],
+[1,0,1,1,1],
+[1,1,1,1,1]];
+Output:
+[[0,0,0,0,0],
+[0,0,0,0,0],
+[0,0,1,1,0],
+[0,0,0,0,0],
+[0,0,1,1,0]];
+*/
+function zeroRowsColumns(mat){
+    const zeroRows = [];
+    const zeroCols = [];
+
+    for (let i=0; i<mat.length; i++) {
+        let row = mat[i];
+        for (let j=0; j<row.length; j++) {
+            const item = row[j];
+            if (item === 0) {
+                zeroRows[i] = true;
+                zeroCols[j] = true;
+            }
+        }
+    }
+
+    for (let i=0; i<mat.length; i++) {
+        let row = mat[i];
+        for (let j=0; j<row.length; j++) {
+            if (zeroRows[i] || zeroCols[j]) {
+                row[j] = 0;
+            }
+        }
+    }
+    return mat;
+}
+
+/*
+### 8: String rotation
+Given two strings, str1 and str2, write a program that checks if str2 is a rotation of str1.
+Input: amazon, azonma
+Output: False
+Input: amazon, azonam
+Output: true
+*/
+
+function strRotation(string1, string2){
+    return (string2 + string2).indexOf(string1) != -1;
 
 }
+
+/*
+*/
 
 function main(){
-    let base = 10;
-    let exponent = 2;
-    let exponentNeg = -2;
-    let str = 'tauhida'
-    let triNum = 5;
-    let myString = '03/14/2019';
-    let seperator = '/';
+    let urlifyStr = 'www.thinkful.com /tauh ida parv een';
+    let arr = [10,4,5,8,2,9];
+    let maxSubarr = [4,6,-3,5,-2,1];
+    let mergeArr1 = [1, 3, 6, 8, 11];
+    let mergeArr2 = [2, 3, 5, 8, 9, 10];
+    let str1 = 'Battle of the Vowels: Hawaii vs. Grozny';
+    let charToRemove = 'aeiou';
+    let productsArr = [1, 3, 9, 4];
+    let twoDarr = [[1,0,1,1,0],[0,1,1,1,0],[1,1,1,1,1],[1,0,1,1,1],[1,1,1,1,1]];
+    let StringRot1= 'amazon'; //amazon
+    let stringRot2 = 'azonma'; //azonam - should be true
 
-    let myMaze = [
-        [' ', ' ', ' ', '*', ' ', ' ', ' '],
-        ['*', '*', ' ', '*', ' ', '*', ' '],
-        [' ', ' ', ' ', ' ', ' ', ' ', ' '],
-        [' ', '*', '*', '*', '*', '*', ' '],
-        [' ', ' ', ' ', ' ', ' ', ' ', 'e']
-    ];
-    let mySmallMaze = [
-        [' ', ' ', ' '],
-        [' ', '*', ' '],
-        [' ', ' ', 'e']
-    ];
-    let path = [];
-    let word = 'east'
-    
-    let organization = {
-		"Zuckerberg": {		
-			"Schroepfer": {
-				"Bosworth": {
-					"Steve":{},
-					"Kyle":{},
-					"Andra":{}
-				},
-				"Zhao": {
-					"Richie":{},
-					"Sofia":{},
-					"Jen":{}
-				},
-				"Badros": {
-					"John":{},
-					"Mike":{},
-					"Pat":{}
-				},
-				"Parikh": {
-					"Zach":{},
-					"Ryan":{},
-					"Tes":{}
-				}
-			},
-			"Schrage": {
-				"VanDyck": {
-					"Sabrina":{},
-					"Michelle":{},
-					"Josh":{}
-				},
-				"Swain": {
-					"Blanch":{},
-					"Tom":{},
-					"Joe":{}
-				},
-				"Frankovsky": {
-					"Jasee":{},
-					"Brian":{},
-					"Margaret":{}
-				}
-			},
-			"Sandberg": {
-				"Goler": {
-					"Eddie":{},
-					"Julie":{},
-					"Annie":{}
-				},
-				"Hernandez": {
-					"Rowi":{},
-					"Inga":{},
-					"Morgan":{}
-				},
-				"Moissinac": {
-					"Amy":{},
-					"Chuck":{},
-					"Vinni":{}
-				},
-				"Kelley": {
-					"Eric":{},
-					"Ana":{},
-					"Wes":{}
-				}
-	}}};
-    let num = 25;
+    //console.log('Drill #1: urlifyString');
+    //console.log(urlifyString(urlifyStr));
 
-    let fibSeq = 7;
-    let arr = [];
+    //console.log('Drill #2: Filtering array');
+    //console.log(remove_lt_5(arr));
 
-    let factNum = 4;
-   
-    countSheep(3);
-    console.log(powerCalculatorRec(base, exponent));
-    console.log(powerCalculatorRec(base, exponentNeg));
-    console.log(reverseString(str));
-    console.log(triangle(triNum))
+    //console.log('Drill #3: maxSubarray');
+    //console.log(maxSubarray(maxSubarr));
 
-    console.log(split(myString, seperator))
+    //console.log('Drill #4: Merge Arrays');
+    //console.log(merge_arrays(mergeArr1,mergeArr2));
 
-    for (let i=1; i<=fibSeq; i++){
-        arr.push(fibonacci(i))
-      }
-    console.log(arr);
+    //console.log('Drill #5: Remove Characters');
+    //console.log(removeChar(str1, charToRemove));
 
-    
-    console.log(factorial(factNum))
+    //console.log('Drill #6: Products');
+    //console.log(products(productsArr));
 
-    maze(myMaze,0,0, 0, 'S', path);
-    mazeAll(myMaze,0,0, 0, 'S', path);
-    
-    printAnagram(word);
+    //console.log('Drill #7: 2D Array');
+    //console.log(zeroRowsColumns(twoDarr));
 
-    traverseA(organization);
-    
-    console.log(binaryRep(num))
+    //console.log('Drill #8: String rotation');
+    //console.log(strRotation(StringRot1,stringRot2));
 
 }
-
 main();
